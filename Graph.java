@@ -4,30 +4,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Graph {
-  protected Map<String, List<String>> graph;
+public class Graph<T> {
+  protected Map<T, List<T>> graph;
 
   public Graph() {
     graph = new HashMap<>();
   }
 
-  public void addEdge(String v, String w) {
+  public void addEdge(T v, T w) {
     addToList(v, w);
-    addToList(w, v);
   }
 
-  public Iterable<String> getAdj(String v) {
+  public Iterable<T> getAdj(T v) {
     return graph.get(v);
   }
 
-  public Set<String> getVerts() {
+  public Set<T> getVerts() {
     return graph.keySet();
   }
 
-  // Adiciona um vértice adjacente a outro, criando a lista
-  // de adjacências caso ainda não exista no dicionário
-  protected List<String> addToList(String v, String w) {
-    List<String> list = graph.get(v);
+  protected List<T> addToList(T v, T w) {
+    List<T> list = graph.get(v);
 
     if (list == null)
       list = new LinkedList<>();
