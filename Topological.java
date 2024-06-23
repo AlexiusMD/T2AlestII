@@ -3,14 +3,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Topological {
-    private Set<String> marked;
-    private List<String> verts;
+public class Topological<T> {
+    private Set<T> marked;
+    private List<T> verts;
 
-    public Topological(Digraph g) {
+    public Topological(Digraph<T> g) {
         marked = new HashSet<>();
         verts = new LinkedList<>();
-        for (String v : g.getVerts()) {
+        for (T v : g.getVerts()) {
             if (!marked.contains(v)) {
                 System.out.println("Start: " + v);
                 dfs(g, v);
@@ -18,16 +18,16 @@ public class Topological {
         }
     }
 
-    public Iterable<String> getTopological() {
+    public Iterable<T> getTopological() {
         return verts;
     }
 
-    private void dfs(Graph g, String v) {
+    private void dfs(Graph<T> g, T v) {
         marked.add(v);
         System.out.println("Estou em " + v);
-        Iterable<String> adj = g.getAdj(v);
+        Iterable<T> adj = g.getAdj(v);
         if (adj != null) {
-            for (String w : adj) {
+            for (T w : adj) {
                 if (!marked.contains(w)) {
                     dfs(g, w);
                 }

@@ -1,6 +1,5 @@
-public class Digraph<T> extends Graph<T> {
-
-    private NEWLINE = "/n";
+public class Digraph<T> extends Graph {
+  private NEWLINE = "/n";
 
   public Digraph() {
     super();
