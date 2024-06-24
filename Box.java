@@ -8,7 +8,7 @@ public class Box {
     }
 
     public boolean fitsIn(Box box) {
-        return this.max < box.getMax() || this.mid < box.getMid() || this.min < box.getMin();
+        return this.max < box.getMax() && this.mid < box.getMid() && this.min < box.getMin();
     }
 
     public int getMax() {
