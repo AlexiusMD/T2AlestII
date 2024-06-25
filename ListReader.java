@@ -21,7 +21,7 @@ public abstract class ListReader {
                 boxes.add(box);
             }
 
-            reader.close(); // damn
+            reader.close();
         } catch (Exception e) {
             System.out.println("Agustini nos ajuda");
             System.err.format(e.getMessage());
