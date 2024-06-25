@@ -18,6 +18,7 @@ public class Main {
         casosT10.put(7, "teste500");
         casosT10.put(8, "teste1000");
         casosT10.put(9, "teste2000");
+        casosT10.put(10, "teste10000");
 
         casosT11.put(1, "caso00010");
         casosT11.put(2, "caso00020");
@@ -49,6 +50,8 @@ public class Main {
     
         input.close();
 
+        long startTime = System.currentTimeMillis();
+
         ArrayList<Box> boxes = ListReader.readFile("./casos/" + casos.get(caso) + ".txt");
 
         Graph<Box> G = new Graph<>();
@@ -59,8 +62,11 @@ public class Main {
                     G.addEdge(j, i);
                     //System.out.println("Adding " + j + " inside " + i);
                 }
-
+        
+        long endTime = System.currentTimeMillis();
+        long timeElapsed = endTime - startTime;
         System.out.println("Maior caminho é: " + G.longestNesting());
         System.out.println("Número de operações: " + G.numOps);
+        System.out.println("Tempo de execução: " + timeElapsed);
     }
 }
