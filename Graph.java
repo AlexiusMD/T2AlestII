@@ -39,27 +39,27 @@ public class Graph <T> {
     return list;
   }
 
-  public int longestNesting() {
-        Map<T, Integer> longestPathMap = new HashMap<>();
-        for (T v : getVerts()) {
-            dfs(v, longestPathMap);
-        }
-        return Collections.max(longestPathMap.values());
+  public int findLongestPath() {
+    Map<T, Integer> longestPathMap = new HashMap<>();
+    for (T v : getVerts()) {
+      dfs(v, longestPathMap);
     }
+    return Collections.max(longestPathMap.values());
+  }
 
   private int dfs(T v, Map<T, Integer> longestPathMap) {
-      if (longestPathMap.containsKey(v)) {
-          return longestPathMap.get(v);
+    if (longestPathMap.containsKey(v)) {
+      return longestPathMap.get(v);
+    }
+    int maxDepth = 1;
+    if(getAdj(v) != null){
+      for (T w : getAdj(v)) {
+        numOps++;
+        int depth = 1 + dfs(w, longestPathMap);
+        maxDepth = Math.max(maxDepth, depth);
       }
-      int maxDepth = 1;
-      if(getAdj(v) != null){
-        for (T w : getAdj(v)) {
-          numOps++;
-          int depth = 1 + dfs(w, longestPathMap);
-          maxDepth = Math.max(maxDepth, depth);
-        }
-      }
-      longestPathMap.put(v, maxDepth);
-      return maxDepth;
+    }
+    longestPathMap.put(v, maxDepth);
+    return maxDepth;
   }
 }
